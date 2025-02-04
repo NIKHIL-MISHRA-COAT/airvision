@@ -11,14 +11,9 @@
     "vite": "^5.4.8"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@base-ui-components/react": "^1.0.0-alpha.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-=======
-    "@base-ui-components/react": "^1.0.0-alpha.5",
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
->>>>>>> 844c80dddd6f170caa5e7411c97caf356c6b2cde
     "@fontsource/roboto": "^5.1.0",
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.4.1",

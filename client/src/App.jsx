@@ -19,12 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />{/* Using element={ <About /> } */}
         
         <Route path="/maps" element={<Map />} />{/* Using element={ <About /> } */}
-<<<<<<< HEAD
         <Route path="/dashboard" element={<Dashboard />} />  
-=======
-        {/* <Route path="/mymap" element={<MyMap />} />Using element={ <About /> } */}
-       
->>>>>>> 844c80dddd6f170caa5e7411c97caf356c6b2cde
       </Routes>
     </Router>
   );
