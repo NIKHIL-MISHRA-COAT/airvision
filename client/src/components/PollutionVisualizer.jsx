@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react"
 import { Box, Typography, Paper } from "@mui/material"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function PollutionVisualizer({ data, selectedPollutants }) {
-  const [aqiLevel, setAqiLevel] = useState(150)
+export default function PollutionVisualizer() {
+  const [aqiLevel, setAqi] = useState(150)
 
   useEffect(() => {
-    if (data && data.AQI && data.AQI.length > 0) {
-      const latestAQI = data.AQI[data.AQI.length - 1].value
-      setAqiLevel(latestAQI)
+    const storedAqi = localStorage.getItem("aqi");
+    if (storedAqi) {
+      setAqi(storedAqi);
     }
-  }, [data])
+    else {
+      setAqi(300)
+    }
+  }, [])
 
   const getAQIColor = (aqi) => {
     if (aqi <= 50) return ["#00e400", "#00b400"]
@@ -34,8 +37,8 @@ export default function PollutionVisualizer({ data, selectedPollutants }) {
 
   return (
     <Box sx={{ height: "100%", position: "relative" }}>
-      <Typography variant="h6" gutterBottom sx={{ color: "#fff", mb: 4, textAlign: "center" }}>
-        Real-time Air Quality
+      <Typography variant="h5" gutterBottom sx={{ color: "#fff", mb: 2, textAlign: "center" }}>
+      Current AQI Level
       </Typography>
 
       <Box
@@ -44,7 +47,7 @@ export default function PollutionVisualizer({ data, selectedPollutants }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "400px",
+          minHeight: "200px",
           position: "relative",
         }}
       >
@@ -150,16 +153,7 @@ export default function PollutionVisualizer({ data, selectedPollutants }) {
           >
             {getAQIStatus(aqiLevel)}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#fff",
-              opacity: 0.8,
-              mt: 2,
-            }}
-          >
-            Current AQI Level
-          </Typography>
+          
         </Box>
       </Box>
     </Box>

@@ -1,128 +1,4 @@
-// import React, { useState, useEffect } from 'react'
-// import { 
-//   Grid, 
-//   Paper, 
-//   Box, 
-//   ThemeProvider, 
-//   createTheme, 
-//   CssBaseline,
-//   Typography,
-//   Fade,
-//   Grow
-// } from '@mui/material'
-// import { FiltersPanel } from '../components/FiltersPanel'
-// import { TrendsChart } from '../components/TrendsChart'
-// import Navbar from '../components/navbar'
 
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: 'dark',
-//     primary: {
-//       main: '#3ea6ff',
-//     },
-//     secondary: {
-//       main: '#f50057',
-//     },
-//     background: {
-//       default: '#0a0f1c',
-//       paper: 'rgba(39, 44, 56, 0.8)',
-//     },
-//   },
-//   components: {
-//     MuiPaper: {
-//       styleOverrides: {
-//         root: {
-//           backgroundImage: 'none',
-//           border: '1px solid rgba(36, 42, 51, 0.5)',
-//           transition: 'all 0.3s ease-in-out',
-//           '&:hover': {
-//             boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
-//             transform: 'translateY(-5px)',
-//           },
-//         },
-//       },
-//     },
-//     MuiTextField: {
-//       styleOverrides: {
-//         root: {
-//           '& .MuiOutlinedInput-root': {
-//             '& fieldset': {
-//               borderColor: 'rgba(31, 41, 55, 0.5)',
-//             },
-//           },
-//         },
-//       },
-//     },
-//   },
-// })
-
-// export default function Dashboard() {
-//   const [chartData, setChartData] = useState({
-//     labels: [],
-//     values: [],
-//   })
-//   const [filters, setFilters] = useState({
-//     location: null,
-//     pollutant: null,
-//     timeRange: null,
-//   })
-
-//   const fetchData = async (filters) => {
-//     try {
-//       const { location, timeRange, pollutant } = filters
-//       const url = `http://localhost:5001/api/aqi?location=${location}&timeRange=${timeRange}`
-//       const response = await fetch(url)
-//       const data = await response.json()
-
-//       updateChartData(data, pollutant) 
-//     } catch (error) {
-//       console.error('Error fetching data:', error)
-//     }
-//   }
-
-//   const updateChartData = (data, pollutant) => {
-//     const labels = data.map(item => item.date)
-//     const values = data.map(item => item[pollutant]) 
-//     setChartData({ labels, values })
-//   }
-
-//   const handleApplyFilters = ({ location, pollutant, timeRange }) => {
-//     setFilters({ location, pollutant, timeRange })
-//     fetchData({ location, pollutant, timeRange })
-//   }
-
-//   // useEffect(() => {
-//   //   if (filters.location && filters.pollutant && filters.timeRange) {
-//   //     fetchData(filters)
-//   //   }
-//   // }, [filters])
-
-//   return (
-//     <ThemeProvider theme={darkTheme}>
-//       <CssBaseline />
-//       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-//         <Navbar />
-//         <Box sx={{ p: 3 }}>
-//           <Fade in={true} timeout={1000}>
-//             <Typography variant="h4" gutterBottom sx={{ color: 'primary.main', mb: 3 }}>
-//               Air Quality Dashboard
-//             </Typography>
-//           </Fade>
-//           <Grow in={true} timeout={1000}>
-//             <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
-//               <FiltersPanel onApplyFilters={handleApplyFilters} />
-//             </Paper>
-//           </Grow>
-//           <Grow in={true} timeout={1500}>
-//             <Paper elevation={3} sx={{ p: 2, height: '100%', bgcolor: 'rgba(86, 37, 100, 0.24)' }}>
-//               <TrendsChart data={chartData} pollutant={filters.pollutant} />
-//             </Paper>
-//           </Grow>
-//         </Box>
-//       </Box>
-//     </ThemeProvider>
-//   )
-// }
 import React, { useState, useEffect, useCallback } from "react"
 import {
   Grid,
@@ -191,7 +67,7 @@ const darkTheme = createTheme({
   },
 })
 
-const pollutants = ["AQI", "PM2.5", "PM10", "CO", "NO", "NO2", "SO2", "O3"]
+const pollutants = ["AQI", "PM2_5", "PM10", "CO", "NO", "NO2", "SO2", "O3"]
 
 export default function Dashboard() {
   const [chartData, setChartData] = useState({})
@@ -266,13 +142,15 @@ export default function Dashboard() {
       <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
         <Navbar />
         <Box sx={{ p: 3 }}>
+        <Grid container spacing={1}>
+        <Grid item xs={12} md={8}>
           <Fade in={true} timeout={1000}>
             <Typography variant="h4" gutterBottom sx={{ color: "primary.main", mb: 3 }}>
               Air Quality Dashboard
             </Typography>
           </Fade>
 
-          <Grid container spacing={1}>
+         
             {/* Filters Panel */}
             <Grid item xs={12}>
               <Grow in={true} timeout={1000}>
@@ -282,7 +160,7 @@ export default function Dashboard() {
               </Grow>
             </Grid>
             {/* Pollutant Selection */}
-            <Grid item xs={12}>
+            <Grid item xs={12} >
               <Grow in={true} timeout={2000}>
                 <Paper elevation={3} sx={{ p: 2, mt: 3 }}>
                   <Typography variant="h6" gutterBottom>
@@ -306,8 +184,16 @@ export default function Dashboard() {
                 </Paper>
               </Grow>
             </Grid>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Grow in={true} timeout={1500}>
+                <Paper elevation={3} sx={{ p: 2, height: "100%" }}>
+                  <PollutionVisualizer />
+                </Paper>
+              </Grow>
+            </Grid>
             {/* Main Content Area */}
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} >
               <Grow in={true} timeout={1500}>
                 <Paper elevation={3} sx={{ p: 2, height: "100%", bgcolor: "rgba(86, 37, 100, 0.24)" }}>
                   {loading ? (
@@ -322,14 +208,7 @@ export default function Dashboard() {
             </Grid>
 
             {/* Visualization Area */}
-            <Grid item xs={12} md={4}>
-              <Grow in={true} timeout={1500}>
-                <Paper elevation={3} sx={{ p: 2, height: "100%" }}>
-                  <PollutionVisualizer data={chartData} selectedPollutants={selectedPollutants} />
-                </Paper>
-              </Grow>
-            </Grid>
-
+            
 
           </Grid>
         </Box>

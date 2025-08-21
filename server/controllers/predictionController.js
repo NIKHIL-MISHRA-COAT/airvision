@@ -15,7 +15,7 @@ const handlePrediction = async (req, res) => {
 
     try {
         // Set the time range for fetching data (e.g., 29 days)
-        const timeRange = 29;
+        const timeRange = 35;
         const inputData = await fetchAQIHistoricalData(timeRange, { location });
 
         // Check if the data is available

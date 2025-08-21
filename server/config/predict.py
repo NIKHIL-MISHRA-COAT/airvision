@@ -47,7 +47,7 @@ def main(input_data, model):
 if __name__ == "__main__":
     try:
         # Load trained LSTM model
-        model_path = "A:\\prj\\AQMS\\AQMS\\server\\config\\prediction.h5"
+        model_path = "B:/Airvision/airvision/server/config/prediction.h5"
         model = load_model(model_path)
         input_data = json.loads(sys.stdin.read())
 

@@ -52,7 +52,7 @@ function MainLayout() {
 
         <Typography sx={{ color: 'white', fontSize: '20px', mt: 2 }}>
           AirVision provides real-time air quality maps to help you monitor and
-          understand environmental data for healthier living.
+          understand environmental data for healthier living. 
         </Typography>
 
         <div className="button_div">
@@ -96,51 +96,21 @@ function MainLayout() {
               </Select>
 
               {/* Close Button */}
-              <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={handleClose}>
+              {/* <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={handleClose}>
                 Apply Filters
-              </Button>
+              </Button> */}
             </Box>
           </Modal>
 
-          <Button variant="contained" color="primary" className='m-3' startIcon={<TrendingUpIcon />}>
+          <Button variant="contained" color="primary" className='m-3' startIcon={<TrendingUpIcon />} onClick={() => navigate("/dashboard")} > 
             Trends
           </Button>
         </div>
+        
       </div>
-
-      {/* Subtitle */}
-      <Typography
-        sx={{
-          color: 'white',
-          fontSize: '20px',
-          mt: 2, // Add margin-top
-        }}
-      >
-        AirVision provides real-time air quality maps to help you monitor and
-        understand environmental data for healthier living.
-      </Typography>
-      <div className="button_div">
-        <Button
-          variant="contained"
-          color="primary"
-          className='m-3'
-          // onClick={() => setActiveTab("filters")}
-          startIcon={<FilterIcon />}
-        >
-          Filters
-        </Button>
-
-        <Button
-          variant="contained"
-          color="primary"
-          className="m-3"
-          onClick={() => navigate("/dashboard")} // Navigate to /dashboard
-          startIcon={<TrendingUpIcon />}
-        >
-          Trends
-        </Button>
-      </div>
-
+      <div>
+             
+            </div>
       {/* Map Section */}
       <div className="right">
         <MapComponent showTable={true} />

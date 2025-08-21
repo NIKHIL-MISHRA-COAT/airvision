@@ -37,6 +37,8 @@ const MapComponent = ({ showTable = true }) => {
             aqi: data.current.pollution.aqius,
             pollutant: data.current.pollution.mainus,
           });
+          localStorage.setItem("aqi",data.current.pollution.aqius );
+
         } else {
           console.error("Failed to fetch air quality data");
         }
