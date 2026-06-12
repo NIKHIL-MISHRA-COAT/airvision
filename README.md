@@ -50,12 +50,14 @@ The prediction engine uses an **LSTM-based Deep Learning model** trained on hist
 
 ## 📸 Screenshots
 
-(./Screenshots/home-1.png)
-(./Screenshots/home-2.png)
-(./Screenshots/forcasting.png)
-(./Screenshots/comparison.png)
 
+![Home](./Screenshots/home-1.png)
 
+![Home 2](./Screenshots/home-2.png)
+
+![Forecasting](./Screenshots/forcasting.png)
+
+![Comparison](./Screenshots/comparison.png)
 
 ---
 
